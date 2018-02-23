@@ -1,30 +1,44 @@
 class Sorter {
   constructor() {
-    // your implementation
+    this.arrValues=[];
+    this.rule=(a,b)=>{
+      if (a > b) return 1;
+      if (a < b) return -1;
+    }
   }
 
   add(element) {
-    // your implementation
+    this.arrValues.push(element);
   }
 
   at(index) {
-    // your implementation
+    return (this.arrValues[index]);
   }
 
   get length() {
-    // your implementation
+    return (this.arrValues.length);
   }
 
   toArray() {
-    // your implementation
+    return (this.arrValues);
   }
 
   sort(indices) {
-    // your implementation
+    let sortKeys=indices.sort();
+    let keysValues=[];
+    for(let i=0;i<indices.length;i++)
+    {
+      keysValues.push(this.at(sortKeys[i]));
+    }
+    let sortKeysValues=keysValues.sort(this.rule);
+    for(let i=0;i<indices.length;i++)
+    {
+      this.arrValues.splice(sortKeys[i],1,sortKeysValues[i]);
+    }
   }
 
   setComparator(compareFunction) {
-    // your implementation
+    this.rule=compareFunction;
   }
 }
 
